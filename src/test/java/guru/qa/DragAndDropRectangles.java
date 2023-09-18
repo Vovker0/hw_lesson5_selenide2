@@ -23,10 +23,10 @@ public class DragAndDropRectangles {
         $("#column-a").shouldHave(text("B"));
 
         // В Selenide есть команда $(element).dragAndDrop($(to-element)), проверьте работает ли тест, если использовать её вместо actions()
-        $("#column-a").dragAndDrop((to($("#column-b"))));
+        $("#column-a").dragAndDrop(to($("#column-b")));
         $("#column-a").shouldHave(text("A"));
 
-        $("#column-a").dragAndDrop((to(("#column-b"))));
+        $("#column-a").dragAndDrop((to("#column-b")));
         $("#column-a").shouldHave(text("B"));
     }
 }
