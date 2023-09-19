@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class DragAndDropRectangles {
 
     @Test
-    void dragAndDropRectangles() {
+    void dragAndDropRectanglesWithActions() {
 
         // Запрограммируйте Drag&Drop с помощью Selenide.actions()
         // Откройте https://the-internet.herokuapp.com/drag_and_drop
@@ -21,12 +21,15 @@ public class DragAndDropRectangles {
 
         // Проверьте, что прямоугольники действительно поменялись
         $("#column-a").shouldHave(text("B"));
+    }
+
+    @Test
+    void dragAndDropRectanglesWithMethod() {
+
+        open("https://the-internet.herokuapp.com/drag_and_drop");
 
         // В Selenide есть команда $(element).dragAndDrop($(to-element)), проверьте работает ли тест, если использовать её вместо actions()
         $("#column-a").dragAndDrop(to($("#column-b")));
-        $("#column-a").shouldHave(text("A"));
-
-        $("#column-a").dragAndDrop((to("#column-b")));
         $("#column-a").shouldHave(text("B"));
     }
 }
