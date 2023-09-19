@@ -1,11 +1,13 @@
 package guru.qa;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -30,5 +32,19 @@ public class GithubEnterpriseSolutionsTest {
         // Убедитесь что загрузилась нужная страница (например что заголовок - "Build like the best."
         $(".enterprise-deathcat").preceding(0).$("h1").
                 shouldHave(text("Build like the best"));
+    }
+
+    @Test
+    void githubEnterpriseSolutionsPageTestSimple() {
+
+        // На главной странице GitHub
+        open("/");
+
+        // Выберите меню Solutions -> Enterprize с помощью команды hover для Solutions
+        $(byText("Solutions")).hover();
+        $(byText("Enterprise")).click();
+
+        // Убедитесь что загрузилась нужная страница (например что заголовок - "Build like the best."
+        $(withText("Build like the best")).shouldBe(Condition.visible);
     }
 }
